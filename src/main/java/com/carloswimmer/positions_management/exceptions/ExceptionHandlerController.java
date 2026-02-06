@@ -11,14 +11,13 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import lombok.RequiredArgsConstructor;
+
 @ControllerAdvice
+@RequiredArgsConstructor
 public class ExceptionHandlerController {
 
-    private MessageSource messageSource;
-
-    public ExceptionHandlerController(MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
+    private final MessageSource messageSource;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<ErrorMessageDTO>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {

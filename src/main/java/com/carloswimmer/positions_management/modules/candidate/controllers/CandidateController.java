@@ -1,11 +1,13 @@
 package com.carloswimmer.positions_management.modules.candidate.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carloswimmer.positions_management.modules.candidate.CandidateEntity;
+import com.carloswimmer.positions_management.modules.candidate.CandidateRepository;
 
 import jakarta.validation.Valid;
 
@@ -13,10 +15,12 @@ import jakarta.validation.Valid;
 @RequestMapping("/candidates")
 public class CandidateController {
     
+    @Autowired
+    private CandidateRepository candidateRepository;
 
     @PostMapping("/")
-    public void create(@Valid  @RequestBody CandidateEntity candidate) {
-        System.out.println("Candidate created: " + candidate);
+    public CandidateEntity create(@Valid  @RequestBody CandidateEntity candidate) {
+        return this.candidateRepository.save(candidate);
     }
 
 }
