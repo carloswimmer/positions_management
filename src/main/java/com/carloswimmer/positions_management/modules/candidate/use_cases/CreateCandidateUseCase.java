@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.carloswimmer.positions_management.exceptions.ConflictException;
-import com.carloswimmer.positions_management.modules.candidate.CandidateEntity;
-import com.carloswimmer.positions_management.modules.candidate.CandidateRepository;
+import com.carloswimmer.positions_management.modules.candidate.entities.CandidateEntity;
+import com.carloswimmer.positions_management.modules.candidate.repositories.CandidateRepository;
 
 @Service
 public class CreateCandidateUseCase {
@@ -19,7 +19,7 @@ public class CreateCandidateUseCase {
         this.candidateRepository
         .findByUsernameOrEmail(candidate.getUsername(), candidate.getEmail())
         .ifPresent(entity -> {
-            throw new ConflictException();
+            throw new ConflictException("Candidate");
         });
 
         return this.candidateRepository.save(candidate);
