@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @Entity(name = "job")
 public class JobEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -29,6 +29,8 @@ public class JobEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private CompanyEntity companyEntity;
+
+    @Column(name = "company_id")
     private UUID companyId;
 
     @CreationTimestamp
