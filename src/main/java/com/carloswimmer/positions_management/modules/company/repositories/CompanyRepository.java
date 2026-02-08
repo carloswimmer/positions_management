@@ -9,4 +9,6 @@ import com.carloswimmer.positions_management.modules.company.entities.CompanyEnt
 
 public interface CompanyRepository extends JpaRepository<CompanyEntity, UUID> {
     Optional<CompanyEntity> findByUsernameOrEmail(String username, String email);
+
+    Optional<CompanyEntity> findByUsername(String username);
 }
