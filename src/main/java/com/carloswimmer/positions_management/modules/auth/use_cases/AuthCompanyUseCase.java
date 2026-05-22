@@ -1,7 +1,7 @@
 package com.carloswimmer.positions_management.modules.auth.use_cases;
 
+import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 
 import javax.naming.AuthenticationException;
 
@@ -44,7 +44,7 @@ public class AuthCompanyUseCase {
         String token = JWT.create()
                 .withIssuer("positions_management")
                 .withSubject(company.getId().toString())
-                .withExpiresAt(Instant.now().plus(2, ChronoUnit.HOURS))
+                .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
                 .sign(algorithm);
 
         return token;
