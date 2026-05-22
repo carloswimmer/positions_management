@@ -9,4 +9,6 @@ import com.carloswimmer.positions_management.modules.candidate.entities.Candidat
 
 public interface CandidateRepository extends JpaRepository<CandidateEntity, UUID> {
     Optional<CandidateEntity> findByUsernameOrEmail(String username, String email);
+
+    Optional<CandidateEntity> findByUsername(String username);
 }
